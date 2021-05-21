@@ -1,0 +1,38 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+html {
+    overflow-x: hidden;
+}
+.app {
+    width: 100vw;
+    background-color: #1f9bed;
+    display: flex;
+    flex-direction: column;
+}
+
+.filtros {
+    width: 100vw;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    margin: 10px;
+}
+.filtros select {
+    margin-left: 20px;
+    margin-right: 20px;
+    width: 180px;
+    border-radius: 10px;
+}
+.select {
+    margin: 10px;
+    height: 40px;
+}
+.input {
+    margin: 10px;
+    height: 40px;
+}
+
