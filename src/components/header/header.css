@@ -1,14 +1,15 @@
 
+
 .header {
     width: 100vw;
-    height: 150px;
+    height: 200px;
     background-color: #01d0b1;
-    /* padding-left: 30px; */
 }
 .header-title {
     font-family: sans-serif;
     font-size: 30px;
     color: white;
+    padding: 30px;
 }
 .header-date {
     font-family: sans-serif;
