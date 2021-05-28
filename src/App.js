@@ -4,34 +4,22 @@ import { Filtros } from "./components/filters"
 import { Resultados }  from "./components/resultados"
 import { Header } from "./components/header/header"
 import { dateToUnix } from "./utils/dates";
-
 import "./App.css"
 
 function App() {
+
   const [country, setCountry] = useState("seleccionar");
   const [price, setPrice] = useState("seleccionar");
   const [size, setSize] = useState("seleccionar");
-  
-  // ---estado para tomar la fecha del usuario
   const [userDate, setUserDate] = useState({
     from: '',
     to: ''
   });
-  
-  // --- estado para tomar la fecha del usuario en tiempo UNIX
   const [userDateUnix, setUserDateUnix] = useState({
       from: '',
       to: ''
     });
-
-
   const [filterHotelList, setfilterHotelList] = useState(hotelsData);
-    // const [dateFrom, setDateFrom] = useState("");
-    // const [dateTo, setDateTo] = useState("");
-
-
-//HANDLER DE LAS FECHAS 
-
 
 
   const handleDate = (key, value) => {
@@ -58,64 +46,6 @@ function App() {
   };
 
   useEffect(filterHotels, [userDate, userDateUnix.from, userDateUnix.to]);
-
- 
-  
-  // useEffect(() => {
-
-  //      const conditionDate = (hotel) => {
-         
-  //       let filterHotelList = [...hotelsData];
-
-  //           if (filterUserDate.from !== '' && filterUserDate.to !== '') {
-  //             filterHotelList = hotelsData.filter((hotel) => {
-  //               const hotelDateFrom = filterUserDateUnix.from >= hotel.availabilityFrom;
-  //               const hotelDateTo = filterUserDateUnix.to <= hotel.availabilityTo;
-  //               return hotelDateFrom && hotelDateTo;
-  //             });
-  //             let filterHotelList = hotelsData.filter((hotel) => conditionDate(hotel))
-  //             setfilterHotelList(filterHotelList) 
-  //           } 
-  //      }
-  //   }, [filterUserDate, filterUserDateUnix.from,]);
-
-  
-
-
-
-//cambiar formatDate por el ejemplo de Fran
-// los inputs de fechas filtran los hoteles pero en el input from se deben poner dos días después para que se filtre. 
-//  function formatDate() {
-//     var d = new Date(),
-//         month = '' + (d.getMonth() + 1),
-//         day = '' + d.getDate(),
-//         year = d.getFullYear();
-  
-//     if (month.length < 0) 
-//         month = '0' + month;
-//     if (day.length < 0) 
-//         day = '0' + day;
-  
-//     return [year, month, day].join('-');
-//   }
-
-  // const handleDateFrom = (e) => {
-  //  if (new Date (e.target.value) < new Date(formatDate())) {
-  //    alert(`La fecha no puede ser anterior al ${formatDate()}`)
-  //  } else if (dateTo && (new Date(e.target.value) > new Date(dateTo))) {
-  //     alert(`La fecha ingresada no puede ser posterior a la ${dateTo}`)
-  //   } else {
-  //      setDateFrom(e.target.value)
-  //   }
-  // }
-
-  // const handleDateTo = (e) => {
-  //   if (new Date (e.target.value) < new Date(formatDate())) {
-  //     alert(`La fecha insertada no puede ser anterior a la ${formatDate()}`) 
-  //   }
-  //   setDateTo(e.target.value);
-  // }
-    
 
   const handleCountry = (e) => {
     const country = e.target.value;
@@ -149,56 +79,13 @@ function App() {
         : size === "todos" ? true : hotel.rooms 
       )
     }
-  //  const dataFilter = (hotel) =>{
-  //    return (!dateFrom || !dateTo ? true:
-  //     hotel.availabilityFrom <= new Date(dateFrom).valueOf() &&
-  //     hotel.availabilityTo >= new Date(dateFrom).valueOf() &&
-  //     hotel.availabilityFrom <= new Date(dateTo).valueOf() &&
-  //     hotel.availabilityTo >= new Date(dateTo).valueOf() 
-  //     )
-  //  }
-
-  // condicionales de las fechas 
-
-    // const conditionDate = () => {
-    //   let filteredHotelList = [...hotelsData];
-
-    //   if (filterUserDate.from !== '' && filterUserDate.to !== '') {
-    //     filteredHotelList = hotelsData.filter(hotel => {
-    //       const hotelDateFrom = filterUserDateUnix.from >= hotel.availabilityFrom;
-    //       const hotelDateTo = filterUserDateUnix.to <= hotel.availabilityTo;
-    //       return hotelDateFrom && hotelDateTo;
-    //     });
-    //     setfilterHotelList(filteredHotelList)
-    //   }
-    // }
 
     const filterHotelList = hotelsData.filter((hotel) => countryFilter(hotel) && priceFilter(hotel) && sizeFilter(hotel));
     setfilterHotelList(filterHotelList);
   }, [country, price, size]);
   
- 
-  // const conditionDate = (hotel) => {
-  //   let filteredHotelList = [...hotelsData];
-
-  //   if (filterUserDate.from !== '' && filterUserDate.to !== '') {
-  //     filteredHotelList = hotelsData.filter(hotel => {
-  //       return(
-  //         hotel.availabilityFrom <= new Date(filterUserDate).valueOf() &&
-  //         hotel.availabilityTo >= new Date(filterUserDate).valueOf() &&
-  //         hotel.availabilityFrom <= new Date(filterUserDate).valueOf() &&
-  //         hotel.availabilityTo >= new Date(filterUserDate).valueOf() 
-  //       )
-  //     });
-  //     setfilterHotelList(filteredHotelList)
-  //   }
-  // }
-
-  // useEffect(() =>  [filterUserDate, filterUserDateUnix.from, filterUserDateUnix.to, conditionDate])
 
   const handleReset = (e) => {
-    // setDateFrom("")
-    // setDateTo("")
     const userDateEmpty = {
       from: '',
       to: ''
@@ -209,7 +96,6 @@ function App() {
     setPrice("seleccionar");
     setSize("seleccionar");
   };
-
 
   return (
    <div className="app">
@@ -223,10 +109,6 @@ function App() {
         handleReset={handleReset}
       />
       <Filtros
-        // dateFrom={dateFrom}
-        // handleDateFrom={handleDateFrom}
-        // dateTo={dateTo}
-        // handleDateTo={handleDateTo}
         userDate={userDate}
         handleDate={handleDate}
         country={country}
