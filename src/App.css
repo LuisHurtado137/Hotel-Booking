@@ -14,7 +14,6 @@ html {
     display: flex;
     flex-direction: column;
 }
-
 .filtros {
     width: 100vw;
     display: flex;
@@ -42,22 +41,6 @@ html {
 .reset-btn:hover {
     background-color: lightblue;
 }
-.animation span {
-    display: flex;
-    justify-content: center;
-    font-size: 60px;
-    font-style: italic;
-    color: black;
-    font-weight: bold; 
-}
-.animation {
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    width: 100vw;
-    height: 600px; 
-}
-
 
 
 
