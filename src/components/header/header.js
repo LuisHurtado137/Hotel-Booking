@@ -2,7 +2,7 @@ import "./header.css"
 
 export function Header(props) {
   
-  let changeDate = (date) => {
+  let naturalDate = (date) => {
     let d = new Date(date + " 00:00"),
         month = d.getMonth(),
         day = d.getDate(),
@@ -38,11 +38,11 @@ export function Header(props) {
       <div className="header">
         <p className="header-title">Hotel Reservation</p>
         <h2 className="header-date">
-            {`Buscas hotel en ${props.country === "todos" ? "cualquier pais" : props.country}, 
-            con un precio ${props.price === "todos" ? "cualquier precio": `${props.price}`}, 
+            {`Buscas hotel en ${props.country === "todos" ? "cualquier pais" : props.country}
+            con un precio ${props.price === "todos" ? "cualquier precio": `${props.price}`} 
             de un tamaño ${props.size === "todos" ? "cualquier tamaño" : props.size}
-            desde ${!props.dateFrom ? "_____" : changeDate(props.dateFrom)}
-            hasta ${!props.dateTo ? "_____" : changeDate(props.dateTo)}`}
+            desde la fecha: ${!props.userDate.from ? "_____" : naturalDate(props.userDate.from)}
+            hasta ${!props.userDate.to ? "_____" : naturalDate(props.userDate.to)}`}
         </h2>
       </div>
     );
