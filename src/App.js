@@ -3,7 +3,7 @@ import { useState, useEffect} from "react";
 import { Filtros } from "./components/filters"
 import { Resultados }  from "./components/resultados"
 import { Header } from "./components/header/header"
-import { dateToUnix } from "./utils/dates";
+import { dateToUnix, beforeDateStatus, dateUnixFromInput } from "./utils/dates";
 import "./App.css"
 
 function App() {
@@ -23,25 +23,37 @@ function App() {
 
 
   const handleDate = (key, value) => {
-    const newUserDate = { ...userDate, [key]: value };
-    setUserDate(newUserDate);
-    if (newUserDate.from !== '' && newUserDate.to !== '') {
-      const newUserDateUnix = dateToUnix(newUserDate);
-      setUserDateUnix(newUserDateUnix);
-    }
-  };
+    if (beforeDateStatus(value)) {
+      alert(`Seleccione una fecha igual o posterior a la fecha de hoy`)
+    } else {
+      if (key === "from") {
+        const newUserDate = { ...userDate, [key]: value };
+        setUserDate(newUserDate);
+      } else if (
+        key === "to" &&
+        dateUnixFromInput(value) >= dateUnixFromInput(userDate.from)
+      ) {
+        const newUserDate = { ...userDate, [key]: value };
+         setUserDate(newUserDate);
+          if (newUserDate.from !== '' && newUserDate.to !== '') {
+          const newUserDateUnix = dateToUnix(newUserDate);
+          setUserDateUnix(newUserDateUnix);
+      }
+    } else {
+      alert(`la fecha HASTA debe ser mayor a la fecha DESDE`)
+    }   
+  }    
+};
 
   const filterHotels = () => {
     let newFilterHotels = [...hotelsData];
-
     if (userDate.from !== '' && userDate.to !== '') {
       newFilterHotels = hotelsData.filter(hotel => {
-        const hotelFrom = userDateUnix.from >= hotel.availabilityFrom;
+        const hotelFrom = userDateUnix.from >= hotel.availabilityFrom; 
         const hotelTo = userDateUnix.to <= hotel.availabilityTo;
         return hotelFrom && hotelTo;
       });
-    }
-
+    } 
     setfilterHotelList(newFilterHotels);
   };
 
@@ -100,8 +112,6 @@ function App() {
   return (
    <div className="app">
       <Header
-        // dateFrom={dateFrom}
-        // dateTo={dateTo}
         userDate={userDate}
         country={country}
         price={price}
