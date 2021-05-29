@@ -1,8 +1,14 @@
 export function Filtros(props) {
     return (
       <div className="filtros">
-        <input type="date" value={props.userDate.from} onChange={({ target }) => props.handleDate('from', target.value)} className="date-filter" />
-        <input type="date" value={props.userDate.to} onChange={({ target }) => props.handleDate('to', target.value)} className="date-filter"/>
+        <label className="from-to">
+          Desde 
+          <input type="date" value={props.userDate.from} onChange={({ target }) => props.handleDate('from', target.value)} className="date-filter" />
+        </label>
+        <label className="from-to">
+          Hasta
+          <input type="date" value={props.userDate.to} onChange={({ target }) => props.handleDate('to', target.value)} className="date-filter"/>
+        </label>
         <select value={props.country} onChange={props.handleCountry} className="select">
             <option disabled value="seleccionar">Seleccione el país</option>
             <option value="todos">Cualquier País</option>
