@@ -21,3 +21,14 @@ export const isToday = unixDate => {
   const dateUnixWithoutTime = new Date(unixDate).setHours(0, 0, 0, 0);
   return todayUnixWithoutTime === dateUnixWithoutTime;
 };
+
+export const beforeDateStatus = (date => {
+  const todayUnixWithoutTime = new Date().setHours(0, 0, 0, 0);
+  const dateUnixWithoutTime = new Date(`${date} 00:00:00`).valueOf()
+  return dateUnixWithoutTime < todayUnixWithoutTime
+  } 
+)
+
+export const dateUnixFromInput = (value) => 
+new Date(`${value} 00:00:00`).valueOf()
+
