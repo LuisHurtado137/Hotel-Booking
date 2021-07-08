@@ -1,3 +1,9 @@
+This is my second project, but now using JavaScript and React.
+
+Is an application of booking hotels, why don't you try to book one :)
+
+go to: https://hotel-vacation.netlify.app
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
