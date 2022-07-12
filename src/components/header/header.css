@@ -1,18 +1,20 @@
 .header {
-    width: 100vw;
-    height: 200px;
-    background-color: #01d0b1;
+  background-color: #f0f8ffb3;
+  font-family: sans-serif;
+  padding: 20px;
+  width: 100vw;
 }
 .header-title {
-    font-family: sans-serif;
-    font-size: 30px;
-    color: white;
-    padding: 30px;
+  font-size: 30px;
+  font-weight: bold;
+  padding: 30px;
 }
 .header-date {
-    font-family: sans-serif;
-    font-size: 20px;
-    color: white;   
-    margin-left: 30px;
-    margin-bottom: 30px;
+  font-size: 20px;
+  margin-bottom: 30px;
+  margin-left: 30px;
+}
+
+.header-date .info {
+  color: blue;
 }
